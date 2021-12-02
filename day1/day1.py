@@ -19,8 +19,7 @@ with open("input.txt", "r") as input:
     lines = input.readlines()
     for index in range(len(lines) - 3):
         sliding_win_1 = [int(line) for line in lines[index : index + 3]]
-        sliding_win_2 = [int(line) for line in lines[index +1 : index + 4]]
+        sliding_win_2 = [int(line) for line in lines[index + 1 : index + 4]]
         if sum(sliding_win_2) > sum(sliding_win_1):
             counter += 1
     print(counter)
-
