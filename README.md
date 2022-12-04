@@ -1,1 +1,3 @@
-## Advent of code 2021
+# Advent of Code
+
+Advent of code for 2021 & 2022 years.
