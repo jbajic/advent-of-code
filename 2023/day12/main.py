@@ -1,4 +1,5 @@
-from more_itertools import distinct_permutations
+from more_itertools import distinct_permutations, last
+from functools import cache
 
 def get_spring_islands(spring_line):
     islands = []
@@ -66,8 +67,60 @@ def first():
 
         num_of_variations += get_number_of_variations(spring_line, unknonws_positions, record, number_of_missing_broken_springs)
 
-        # break
     print(f"Number of variations: {num_of_variations}")
 
 
+
+def get_spring_line_islands_records(spring_line):
+    islands = []
+    island = []
+    for elem in spring_line:
+        if elem == "." and island:
+            islands.append(island)
+            island = []
+        elif elem != ".":
+            island.append(elem)
+
+    if island:
+        islands.append(island)
+
+    return list(map(len, islands))
+
+
+@cache
+def get_number_of_variations_2(spring_line, record):
+    if not record:
+        return 0  if "#" in spring_line else 1
+
+    if not spring_line:
+        return 0 if record else 1
+
+    variations = 0
+    if spring_line[0] in ".?":
+        variations += get_number_of_variations_2(spring_line[1:], record)
+
+    if spring_line[0] in "#?":
+        if "." not in spring_line[0:record[0]] and len(spring_line) >= record[0] \
+            and (len(spring_line) == record[0] or spring_line[record[0]] in ".?"):
+            variations += get_number_of_variations_2(spring_line[record[0]+1:], record[1:])
+        
+    return variations
+
+
+def second():
+    springs = []
+    records = []
+    with open("input.txt") as file:
+        for line in file:
+            splitted = line.strip().split()
+            springs.append("?".join([splitted[0]] * 5))
+            records.append(tuple(int(i) for i in splitted[1].strip().split(",")) * 5)
+
+    num_of_variations = 0
+    for spring_line, record_line in zip(springs, records):
+        num_of_variations += get_number_of_variations_2(spring_line, record_line)
+    print(f"Number of unfolded variations {num_of_variations}")
+
+
 first()
+second()
