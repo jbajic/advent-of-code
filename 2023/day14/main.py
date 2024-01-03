@@ -129,5 +129,5 @@ def second():
     print(f"Rock weight sum after {NUMBER_OF_CYCLES} cycles is {last_weight}")
 
 
-# first()
+first()
 second()
