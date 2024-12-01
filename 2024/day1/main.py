@@ -18,17 +18,14 @@ def first_part():
 
 
 def second_part():
-    left_list = []
     map_of_apperances = Counter()
+    similarity_sum = 0
+
     with open("input.txt") as file:
         for line in file:
-            left, right = [int(x) for x in line.split()]
-            left_list.append(left)
-            map_of_apperances[right] += 1
-
-    similarity_sum = 0
-    for elem in left_list:
-        similarity_sum += elem * map_of_apperances.get(elem, 0)
+            left, right = map(int, line.split())
+            similarity_sum += left * map_of_apperances[right]
+            map_of_apperances[right] += 1    
     print(f"Similarity score is {similarity_sum}")
 
 
