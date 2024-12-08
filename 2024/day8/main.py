@@ -1,5 +1,5 @@
 from collections import defaultdict
-from itertools import combinations, permutations
+from itertools import combinations
 
 
 def first_part():
