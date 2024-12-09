@@ -34,7 +34,6 @@ Entry = namedtuple("Entry", ["id", "count"])
 def second_part():
     disk_map = None
     with open("input.txt") as file:
-    # with open("input2.txt") as file:
         disk_map = list(map(int, file.readline().strip()))
     expand = []
     file_index = 0
@@ -45,7 +44,6 @@ def second_part():
         else:
             expand.extend(["." for _ in range(space)])
 
-    print(expand)
     expand_map = []
     current_elem = None
     current_count = 0
@@ -79,7 +77,6 @@ def second_part():
                 assert(current_right_id is None or current_right_id == expand_map[right].id), "Can process single right in a loop"
                 current_right_id = expand_map[right].id
                 if expand_map[left].count >= expand_map[right].count:
-                    # seen_ids.add(expand_map[right].id)
                     insert_id = expand_map[right].id
                     insert_count = expand_map[right].count 
 
