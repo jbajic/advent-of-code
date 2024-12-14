@@ -160,9 +160,7 @@ def second_part():
             current_try += 1
             if current_try == try_max:
                 break
-            print(f"Tree found at {seconds} seconds")
         
-        print(f"Current second {seconds}")
 
 
 first_part()
