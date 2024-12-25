@@ -21,13 +21,9 @@ def first_part():
             Position(*tuple(map(int, line.strip().split(",")))) for line in file
         ]
 
-    print(incoming_bytes)
     grid = [["." for _ in range(WIDTH)] for _ in range(HEIGHT)]
     for i in range(CORRUPTED_BYTES):
         grid[incoming_bytes[i].y][incoming_bytes[i].x] = "#"
-
-    for r in grid:
-        print(r)
 
     end_position = Position(WIDTH - 1, HEIGHT - 1)
     heap = []
@@ -38,8 +34,6 @@ def first_part():
         _, current, steps = heapq.heappop(heap)
         visited.add(current)
         if current == end_position:
-            print(f"{current} at {steps} and")
-            print(f"Found it!")
             min_steps = steps
             break
         for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
@@ -104,7 +98,6 @@ def second_part():
 
     low = CORRUPTED_BYTES
     high = len(incoming_bytes)
-    print(f"{low} <= {high}")
     while low <= high:
         mid = low + (high - low) // 2
 
@@ -119,17 +112,6 @@ def second_part():
 
     print(f"Stopping coordiantes are at {low} and are {incoming_bytes[low]}")
 
-    for index in range(low - 3, low + 3):
-        grid = reset_grid()
-        for i in range(index):
-            grid[incoming_bytes[i].y][incoming_bytes[i].x] = "#"
 
-        print(
-            f"For {index} at position {incoming_bytes[index]} there is path: {is_there_solution(grid)}"
-        )
-
-
-# first_part()
-# 63, 16
-# 2, 27
+first_part()
 second_part()
