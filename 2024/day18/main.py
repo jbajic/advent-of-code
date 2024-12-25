@@ -120,5 +120,7 @@ def second_part():
         print(f"For {index} at position {incoming_bytes[index]} there is path: {is_there_solution(grid)}")
 
 
-first_part()
+# first_part()
+# 63, 16
+# 2, 27
 second_part()
